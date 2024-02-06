@@ -3,6 +3,16 @@ import { Label } from "@fluentui/react";
 import { Chart as ChartRender } from "chart.js";
 import { DataRow, EGroups, IChartData } from "./interfaces";
 import { useEffect } from "react";
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Radar } from "react-chartjs-2";
 
 export interface IChartProps {
   chartType: string;
@@ -25,6 +35,17 @@ export const Chart = React.memo(function Chart({
   const [_groupFilter, setGroupFilter] = React.useState<string>(
     EGroups[groupFilter]
   );
+
+  useEffect(() => {
+    ChartJS.register(
+      RadialLinearScale,
+      PointElement,
+      LineElement,
+      Filler,
+      Tooltip,
+      Legend
+    );
+  }, []);
 
   let chartLabels: string[] = [];
 
@@ -72,6 +93,7 @@ export const Chart = React.memo(function Chart({
           _backgroundColors.length > i ? _backgroundColors[i] : "",
         pointBorderColor: _borderColors.length > i ? _borderColors[i] : "",
         data: Array<Number>(),
+        borderWidth: 1,
       };
       const filteredArray = dataRows.filter((obj) =>
         obj.properties.some((prop) => prop.value === groupFilter)
@@ -89,54 +111,58 @@ export const Chart = React.memo(function Chart({
           )
             chartLabels.push(element.value as string);
         });
-        allRecords.push(productChartData);
       });
+      fillLabels = false;
+      allRecords.push(productChartData);
     });
     // }
     return allRecords;
   };
 
-  let marksData: { lables: string[]; datasets: IChartData[] } = {
-    lables: [],
+  let marksData: { labels: string[]; datasets: IChartData[] } = {
+    labels: [],
     datasets: [],
   };
 
   useEffect(() => {
     marksData = {
       datasets: setValuesToChart(dataRows),
-      lables: chartLabels,
+      labels: chartLabels,
     };
   }, [groupFilter]);
 
-  useEffect(() => {
-    if (canvasRef.current) {
-      const chart = new ChartRender(canvasRef.current, {
-        type: chartType,
-        data: marksData as any,
-        options: {
-          legend: {
-            labels: {
-              fontSize: 20,
-            },
-          },
-          tooltips: {
-            enabled: true,
-            callbacks: {
-              label: function (tooltipItem, data) {
-                return (
-                  data.datasets![tooltipItem.datasetIndex!].label +
-                  " : " +
-                  data.datasets![tooltipItem.datasetIndex!].data![
-                    tooltipItem.index!
-                  ]
-                );
-              },
-            },
-          },
-        },
-      });
-    }
-  }, [chartType, marksData]);
+  // useEffect(() => {
+  //   if (canvasRef.current) {
+  //     new ChartRender(
+  //       document.getElementById("marksChart") as HTMLCanvasElement,
+  //       {
+  //         type: chartType,
+  //         data: marksData as any,
+  //         options: {
+  //           legend: {
+  //             labels: {
+  //               fontSize: 20,
+  //             },
+  //           },
+  //           tooltips: {
+  //             enabled: true,
+  //             callbacks: {
+  //               label: function (tooltipItem, data) {
+  //                 return (
+  //                   data.datasets![tooltipItem.datasetIndex!].label +
+  //                   " : " +
+  //                   data.datasets![tooltipItem.datasetIndex!].data![
+  //                     tooltipItem.index!
+  //                   ]
+  //                 );
+  //               },
+  //             },
+  //           },
+  //         },
+  //       }
+  //     );
+  //   }
+  // }, [chartType, marksData]);
 
   return (
     <div className="modalContainer">
@@ -150,7 +176,7 @@ export const Chart = React.memo(function Chart({
           </option>
         ))}
       </select>
-      <canvas id="marksChart" ref={canvasRef} />
+      <Radar data={marksData}></Radar>
     </div>
   );
 });

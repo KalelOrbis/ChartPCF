@@ -2,11 +2,11 @@ import { IInputs, IOutputs } from "./generated/ManifestTypes";
 import { Chart, IChartProps } from "./Chart";
 import * as React from "react";
 import { DataRow, EGroups, IProductProperty } from "./interfaces";
+import { allRows } from "./utils";
 
 export class ChartPCF
   implements ComponentFramework.ReactControl<IInputs, IOutputs>
 {
-  private theComponent: ComponentFramework.ReactControl<IInputs, IOutputs>;
   private notifyOutputChanged: () => void;
   private _chartType: string;
   private _context: ComponentFramework.Context<IInputs>;
@@ -48,7 +48,8 @@ export class ChartPCF
   public init(
     context: ComponentFramework.Context<IInputs>,
     notifyOutputChanged: () => void,
-    state: ComponentFramework.Dictionary
+    state: ComponentFramework.Dictionary,
+    container: HTMLDivElement
   ): void {
     this.notifyOutputChanged = notifyOutputChanged;
     this._chartType;
@@ -66,33 +67,33 @@ export class ChartPCF
     this._context = context;
     this._chartType = this._context.parameters.chartType.raw;
 
-    const dataset = this._context.parameters.itemsDataSet;
+    // const dataset = this._context.parameters.itemsDataSet;
 
-    let allRows = new Array<DataRow>();
-    let allColumns = Array<string>();
+    // let allRows = new Array<DataRow>();
+    // let allColumns = Array<string>();
 
-    dataset.sortedRecordIds.forEach((recordId, index) => {
-      let productItem: DataRow = {
-        id: "",
-        properties: [],
-      };
-      productItem["id"] = recordId;
+    // dataset.sortedRecordIds.forEach((recordId, index) => {
+    //   let productItem: DataRow = {
+    //     id: "",
+    //     properties: [],
+    //   };
+    //   productItem["id"] = recordId;F
 
-      let item = dataset.records[recordId];
-      dataset.columns.forEach((column) => {
-        allColumns.push(column.displayName);
+    //   let item = dataset.records[recordId];
+    //   dataset.columns.forEach((column) => {
+    //     allColumns.push(column.displayName);
 
-        // Add the column value to the each Item based on the column name
-        let productProperty: IProductProperty = {
-          alias: column.alias,
-          displayName: column.displayName,
-          value: item.getFormattedValue(column.name) as string,
-          type: column.dataType,
-        };
-        productItem.properties.push(productProperty);
-      });
-      allRows.push(productItem);
-    });
+    //     // Add the column value to the each Item based on the column name
+    //     let productProperty: IProductProperty = {
+    //       alias: column.alias,
+    //       displayName: column.displayName,
+    //       value: item.getFormattedValue(column.name) as string,
+    //       type: column.dataType,
+    //     };
+    //     productItem.properties.push(productProperty);
+    //   });
+    //   allRows.push(productItem);
+    // });
 
     const props: IChartProps = {
       chartType: this._chartType,

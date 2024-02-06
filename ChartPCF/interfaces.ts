@@ -3,6 +3,7 @@ export interface IChartData {
   backgroundColor: string;
   pointBorderColor: string;
   data: Array<Number>;
+  borderWidth?: number;
 }
 
 export enum EGroups {
