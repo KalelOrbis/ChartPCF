@@ -1,0 +1,169 @@
+.OrbisPCFControls.GraphingPCF {
+  margin: 0px 15px;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  text-align: left;
+}
+.OrbisPCFControls.GraphingPCF table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.OrbisPCFControls.GraphingPCF * {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.OrbisPCFControls.GraphingPCF .buttonComparator {
+  margin-right: 20px;
+  margin-top: 10px;
+  height: 40px;
+  background: white;
+  border: solid #000 1px;
+  font-size: 15px;
+}
+.OrbisPCFControls.GraphingPCF .paginationButtons {
+  background: white;
+  border: solid #000 1px;
+  height: 30px;
+  font-size: 20px;
+}
+.OrbisPCFControls.GraphingPCF button:disabled {
+  border-color: #cfcfcf;
+  cursor: context-menu;
+  color: #cfcfcf;
+}
+.OrbisPCFControls.GraphingPCF button {
+  cursor: pointer;
+}
+.OrbisPCFControls.GraphingPCF .picture {
+  max-height: 120px;
+}
+.OrbisPCFControls.GraphingPCF .defaulPicture {
+  background-image: url("../iconimage.png");
+  height: 120px;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+}
+.OrbisPCFControls.GraphingPCF a {
+  color: rgb(4, 89, 153) !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+.OrbisPCFControls.GraphingPCF .flex-container {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+.OrbisPCFControls.GraphingPCF .flex-item-7 {
+  width: 70%;
+}
+.OrbisPCFControls.GraphingPCF .flex-item-3 {
+  width: 30%;
+}
+.OrbisPCFControls.GraphingPCF th,
+.OrbisPCFControls.GraphingPCF td {
+  text-align: left;
+  padding: 15px 8px;
+}
+.OrbisPCFControls.GraphingPCF th {
+  font-weight: bold;
+}
+
+.OrbisPCFControls.GraphingPCF tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+.OrbisPCFControls.GraphingPCF .pagination {
+  text-align: end;
+}
+.OrbisPCFControls.GraphingPCF .row-quantity {
+  text-align: left;
+}
+.OrbisPCFControls.GraphingPCF tbody tr:hover {
+  background: #9e9e9e96;
+}
+.OrbisPCFControls.GraphingPCF .checkedbutton {
+  padding: 0px;
+  border: none;
+  cursor: pointer;
+  color: #607d8b;
+  font-size: 20px;
+  background: inherit;
+  outline: none;
+}
+.OrbisPCFControls.GraphingPCF .uncheckedbutton {
+  padding: 0px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  background: inherit;
+  outline: none;
+}
+
+.OrbisPCFControls.GraphingPCF .fixed-top {
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  padding-bottom: 10px;
+}
+.OrbisPCFControls.GraphingPCF .page {
+  margin: 0px 20px;
+}
+
+.OrbisPCFControls.GraphingPCF .table-container {
+  display: flex;
+  margin-top: 60px;
+  flex: 1 1 auto;
+  margin-bottom: 60px;
+  overflow: auto;
+}
+.OrbisPCFControls.GraphingPCF .main-flex {
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+.OrbisPCFControls.GraphingPCF .flex-element {
+  display: flex;
+  width: 100%;
+}
+.OrbisPCFControls.GraphingPCF .fixed-bottom {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background: white;
+  height: 60px;
+  display: flex;
+  border-top: solid;
+}
+button.closeModal {
+  margin-right: 3%;
+  margin-top: -20px;
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 0px;
+  outline: none;
+  font-size: 1.4em;
+  color: #fff;
+  background: #9e9e9e;
+  right: 0px;
+  top: 30px;
+}
+.modalContainer {
+  position: relative;
+  display: flex;
+  text-align: right;
+  height: auto;
+  flex-direction: column;
+  width: 60vw;
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+}
